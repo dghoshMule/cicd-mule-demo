@@ -7,10 +7,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-	- name: Checkout this Repo
-	  uses: actions/checkout@v2
-	- name: Cache the dependency
-	  uses: actions/cache@v1
+    - name: Checkout this Repo
+      uses: actions/checkout@v2
+    - name: Cache the dependency
+      uses: actions/cache@v1
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -28,7 +28,7 @@ jobs:
         commitHash=$(git rev-parse --short "$GITHUB_SHA")
         artifactName2=$(ls target/*.jar | head -1 | sed "s/.jar/.$commitHash.jar/g")
         mv $artifactName1 $artifactName2
-	- name: Upload Artifacts
+    - name: Upload Artifacts
       uses: actions/upload-artifact@master
       with:
           name: artifacts
