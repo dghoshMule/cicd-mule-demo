@@ -8,9 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout this Repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Cache the dependency
-      uses: actions/cache@v1
+      uses: actions/cache@v3
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -29,7 +29,7 @@ jobs:
         artifactName2=$(ls target/*.jar | head -1 | sed "s/.jar/.$commitHash.jar/g")
         mv $artifactName1 $artifactName2
     - name: Upload Artifacts
-      uses: actions/upload-artifact@master
+      uses: actions/upload-artifact@v3
       with:
           name: artifacts
           path: target/*.jar
@@ -37,14 +37,14 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:    
-    - uses: actions/checkout@v2
-    - uses: actions/cache@v1
+    - uses: actions/checkout@v3
+    - uses: actions/cache@v3
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
           ${{ runner.os }}-maven-
-    - uses: actions/download-artifact@master
+    - uses: actions/download-artifact@v3
       with:
         name: artifacts
     - name: Deploy to CloudHub
