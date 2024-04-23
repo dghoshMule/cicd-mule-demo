@@ -17,7 +17,7 @@ output application/json
 ---
 
 {
-	message: "Github Actions CI/CD Pipeline"
+	message: "Github Actions CI/CD Pipeline - Commit # 1"
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
